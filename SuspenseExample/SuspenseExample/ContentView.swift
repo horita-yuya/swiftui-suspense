@@ -6,12 +6,12 @@ struct ContentView: View {
         VStack {
             VStack {
                 Text("Please introduce yourself.")
-                Suspence { name in
+                Suspense { name in
                     try ComponentA(name: name)
                 }
             }
 
-            Suspence { name in
+            Suspense { name in
                 try ComponentB {
                     try ComponentA(name: name)
                 }

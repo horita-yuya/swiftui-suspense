@@ -1,6 +1,6 @@
 import SwiftUI
 
-public struct Suspence<PAGE: View, A>: View {
+public struct Suspense<PAGE: View, A>: View {
     @State private var page: PAGE?
     private var component: (A?) throws -> PAGE
     private var fallback: AnyView

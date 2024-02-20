@@ -8,7 +8,7 @@ struct ComponentA: View {
         self.name = try resolveValue(name) {
             try await Task.sleep(nanoseconds: 2_000_000_000)
 
-            return "My name is Suspence!"
+            return "My name is Suspense!"
         }
     }
 
