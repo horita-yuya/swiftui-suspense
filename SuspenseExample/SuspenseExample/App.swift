@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct SuspenseExampleApp: App {
+struct App: SwiftUI.App {
     var body: some Scene {
         WindowGroup {
             ContentView()
