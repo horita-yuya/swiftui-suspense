@@ -18,7 +18,7 @@ To add `swiftui-suspense` to your SwiftUI project, simply add the following depe
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/yourusername/swiftui-suspense.git", from: "1.0.0")
+    .package(url: "https://github.com/horita-yuya/swiftui-suspense.git", from: "1.0.0")
 ]
 ```
 
@@ -32,13 +32,28 @@ Wrap your view components that require asynchronous data fetching with `Suspense
 import Suspense
 import SwiftUI
 
+struct ComponentA: View {
+    var name: String
+
+    init(name: String?) throws {
+        self.name = try resolveValue(name) {
+            try await Task.sleep(nanoseconds: 2_000_000_000)
+
+            return "My name is Suspence!"
+        }
+    }
+
+    var body: some View {
+        Text("\(name)")
+    }
+}
+
+
 struct ContentView: View {
     var body: some View {
         VStack {
             Suspense { name in
                 try ComponentA(name: name)
-            } fallback: {
-                Text("Loading...")
             }
         }
     }
