@@ -6,14 +6,14 @@ struct ContentView: View {
         VStack {
             VStack {
                 Text("Please introduce yourself.")
-                Suspense { name in
-                    try ComponentA(name: name)
+                Suspense { user in
+                    try UserComponent(user: user)
                 }
             }
 
-            Suspense { name in
-                try ComponentB {
-                    try ComponentA(name: name)
+            Suspense { user in
+                try Layout {
+                    try UserComponent(user: user)
                 }
             } fallback: {
                 Text("Well....")

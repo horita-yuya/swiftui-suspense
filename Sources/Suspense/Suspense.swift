@@ -4,18 +4,25 @@ public struct Suspense<PAGE: View, A>: View {
     @State private var page: PAGE?
     private var component: (A?) throws -> PAGE
     private var fallback: AnyView
+    private var onError: ((Error) -> Void)?
 
-    public init(@ViewBuilder component: @escaping (A?) throws -> PAGE) {
+    public init(
+        @ViewBuilder component: @escaping (A?) throws -> PAGE,
+        onError: ((Error) -> Void)? = nil
+    ) {
         self.component = component
         self.fallback = AnyView(ProgressView())
+        self.onError = onError
     }
 
     public init(
         @ViewBuilder component: @escaping (A?) throws -> PAGE,
-        @ViewBuilder fallback: () -> some View
+        @ViewBuilder fallback: () -> some View,
+        onError: ((Error) -> Void)? = nil
     ) {
         self.component = component
         self.fallback = AnyView(fallback())
+        self.onError = onError
     }
 
     public var body: some View {
@@ -23,15 +30,18 @@ public struct Suspense<PAGE: View, A>: View {
             page
         } else {
             fallback
-                .onAppear {
+                .task {
                     do {
                         self.page = try component(nil)
                     } catch Promise<A>.pending(let query) {
-                        Task {
+                        do {
                             let data = try await query()
                             self.page = try component(data)
+                        } catch {
+                            onError?(error)
                         }
                     } catch {
+                        onError?(error)
                     }
                 }
         }
