@@ -5,17 +5,20 @@ import PackageDescription
 
 let package = Package(
     name: "Suspense",
-    platforms: [.iOS(.v16)],
+    platforms: [.iOS(.v16), .macOS(.v14)],
     products: [
         .library(
             name: "Suspense",
-            targets: ["Suspense"]),
+            targets: ["Suspense"]
+        )
     ],
     targets: [
         .target(
-            name: "Suspense"),
+            name: "Suspense"
+        ),
         .testTarget(
             name: "SuspenseTests",
-            dependencies: ["Suspense"]),
+            dependencies: ["Suspense"]
+        ),
     ]
 )

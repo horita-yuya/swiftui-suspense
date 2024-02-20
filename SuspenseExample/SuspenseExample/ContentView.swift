@@ -1,24 +1,24 @@
-//
-//  ContentView.swift
-//  SuspenseExample
-//
-//  Created by Yuya Horita on 2024/02/20.
-//
-
+import Suspense
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            VStack {
+                Text("Please introduce yourself.")
+                Suspence { name in
+                    try ComponentA(name: name)
+                }
+            }
+
+            Suspence { name in
+                try ComponentB {
+                    try ComponentA(name: name)
+                }
+            } fallback: {
+                Text("Well....")
+            }
         }
         .padding()
     }
-}
-
-#Preview {
-    ContentView()
 }

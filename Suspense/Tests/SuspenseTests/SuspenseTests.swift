@@ -1,4 +1,5 @@
 import XCTest
+
 @testable import Suspense
 
 final class SuspenseTests: XCTestCase {
