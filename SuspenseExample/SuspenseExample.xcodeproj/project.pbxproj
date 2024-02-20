@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		819EBA682B84FA57009BE1FE /* Suspense in Frameworks */ = {isa = PBXBuildFile; productRef = 819EBA672B84FA57009BE1FE /* Suspense */; };
 		81EA69DF2B845C0F00E9DB79 /* SuspenseExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EA69DE2B845C0F00E9DB79 /* SuspenseExampleApp.swift */; };
 		81EA69E12B845C0F00E9DB79 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EA69E02B845C0F00E9DB79 /* ContentView.swift */; };
 		81EA69E32B845C1000E9DB79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EA69E22B845C1000E9DB79 /* Assets.xcassets */; };
 		81EA69E62B845C1000E9DB79 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EA69E52B845C1000E9DB79 /* Preview Assets.xcassets */; };
-		81EA69EF2B845C3600E9DB79 /* Suspense in Frameworks */ = {isa = PBXBuildFile; productRef = 81EA69EE2B845C3600E9DB79 /* Suspense */; };
 		81EA69F12B845D4200E9DB79 /* SuspenseComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EA69F02B845D4200E9DB79 /* SuspenseComponents.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,7 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81EA69EF2B845C3600E9DB79 /* Suspense in Frameworks */,
+				819EBA682B84FA57009BE1FE /* Suspense in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,7 +99,7 @@
 			);
 			name = SuspenseExample;
 			packageProductDependencies = (
-				81EA69EE2B845C3600E9DB79 /* Suspense */,
+				819EBA672B84FA57009BE1FE /* Suspense */,
 			);
 			productName = SuspenseExample;
 			productReference = 81EA69DB2B845C0F00E9DB79 /* SuspenseExample.app */;
@@ -360,7 +360,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		81EA69EE2B845C3600E9DB79 /* Suspense */ = {
+		819EBA672B84FA57009BE1FE /* Suspense */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Suspense;
 		};
