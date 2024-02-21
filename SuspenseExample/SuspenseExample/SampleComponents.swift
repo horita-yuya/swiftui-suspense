@@ -15,6 +15,18 @@ struct UserComponent: View {
     }
 }
 
+struct AsyncComponent: View {
+    var user: User
+
+    init(id: String) async throws {
+        self.user = try await getUser()
+    }
+
+    var body: some View {
+        Text("My name is \(user.name) from AsyncComponent")
+    }
+}
+
 struct ErrorComponent: View {
     enum UserError: Error {
         case notFound

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		819EBA682B84FA57009BE1FE /* Suspense in Frameworks */ = {isa = PBXBuildFile; productRef = 819EBA672B84FA57009BE1FE /* Suspense */; };
 		819EBA6A2B84FE14009BE1FE /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819EBA692B84FE14009BE1FE /* SampleData.swift */; };
+		819EBA6C2B861278009BE1FE /* TraditionalComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819EBA6B2B861278009BE1FE /* TraditionalComponents.swift */; };
 		81EA69DF2B845C0F00E9DB79 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EA69DE2B845C0F00E9DB79 /* App.swift */; };
 		81EA69E12B845C0F00E9DB79 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EA69E02B845C0F00E9DB79 /* ContentView.swift */; };
 		81EA69E32B845C1000E9DB79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EA69E22B845C1000E9DB79 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		819EBA692B84FE14009BE1FE /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		819EBA6B2B861278009BE1FE /* TraditionalComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionalComponents.swift; sourceTree = "<group>"; };
 		81EA69DB2B845C0F00E9DB79 /* SuspenseExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuspenseExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA69DE2B845C0F00E9DB79 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		81EA69E02B845C0F00E9DB79 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			children = (
 				81EA69DE2B845C0F00E9DB79 /* App.swift */,
 				81EA69E02B845C0F00E9DB79 /* ContentView.swift */,
+				819EBA6B2B861278009BE1FE /* TraditionalComponents.swift */,
 				81EA69F02B845D4200E9DB79 /* SampleComponents.swift */,
 				819EBA692B84FE14009BE1FE /* SampleData.swift */,
 				81EA69E22B845C1000E9DB79 /* Assets.xcassets */,
@@ -158,6 +161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				819EBA6C2B861278009BE1FE /* TraditionalComponents.swift in Sources */,
 				81EA69E12B845C0F00E9DB79 /* ContentView.swift in Sources */,
 				81EA69F12B845D4200E9DB79 /* SampleComponents.swift in Sources */,
 				81EA69DF2B845C0F00E9DB79 /* App.swift in Sources */,
