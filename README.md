@@ -72,38 +72,42 @@ import Suspense
 import SwiftUI
 
 struct ContentView: View {
-    @State var error: Error?
-
     var body: some View {
-        VStack {
+        ErrorBoundary {
             VStack {
-                Text("Please introduce yourself.")
-                Suspense { user in
-                    try UserComponent(user: user)
+                VStack {
+                    Text("Please introduce yourself.")
+                    Suspense { user in
+                        try UserComponent(user: user)
+                    }
                 }
-            }
 
-            Suspense { user in
-                try Layout {
-                    try UserComponent(user: user)
-                }
-            } fallback: {
-                Text("Well....")
-            }
-
-            ErrorBoundary(error: $error) {
                 Suspense { user in
-                    try ErrorComponent(user: user)
-                } onError: { error in
-                    self.error = error
+                    try Layout {
+                        try UserComponent(user: user)
+                    }
+                } fallback: {
+                    Text("Well....")
                 }
-            } fallback: { error, reset in
-                Text("Error happened")
-                Button("Reset") {
-                    reset()
+
+                Suspense { user in
+                    try TerribleErrorComponent(user: user)
                 }
-                .buttonStyle(.borderedProminent)
+
+                ErrorBoundary {
+                    Suspense { user in
+                        try ErrorComponent(user: user)
+                    }
+                } fallback: { error, reset in
+                    Text("Error happened")
+                    Button("Reset") {
+                        reset()
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
             }
+        } fallback: { _, _ in
+            Text("Application Error Happened!!!")
         }
         .padding()
     }
