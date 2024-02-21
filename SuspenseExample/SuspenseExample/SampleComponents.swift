@@ -15,6 +15,26 @@ struct UserComponent: View {
     }
 }
 
+struct ErrorComponent: View {
+    enum UserError: Error {
+        case notFound
+    }
+
+    var user: User
+
+    init(user: User?) throws {
+        self.user = try resolveValue(user) {
+            try await Task.sleep(nanoseconds: 4_000_000_000)
+
+            throw UserError.notFound
+        }
+    }
+
+    var body: some View {
+        Text("Never comes here")
+    }
+}
+
 struct Layout: View {
     var children: AnyView
 
