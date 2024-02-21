@@ -2,6 +2,7 @@ import SwiftUI
 
 public struct Suspense<PAGE: View, A>: View {
     @State private var page: PAGE?
+    @Environment(ErrorHandler.self) private var errorHandler: ErrorHandler?
     private var component: (A?) throws -> PAGE
     private var fallback: AnyView
     private var onError: ((Error) -> Void)?
@@ -39,9 +40,11 @@ public struct Suspense<PAGE: View, A>: View {
                             self.page = try component(data)
                         } catch {
                             onError?(error)
+                            errorHandler?.error = error
                         }
                     } catch {
                         onError?(error)
+                        errorHandler?.error = error
                     }
                 }
         }
