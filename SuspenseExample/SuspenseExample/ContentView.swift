@@ -3,41 +3,52 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ErrorBoundary {
-            VStack {
+        VStack {
+            Text("Header")
+            // Main ErrorBoundary
+            ErrorBoundary {
                 VStack {
-                    Text("Please introduce yourself.")
+                    VStack {
+                        Text("Please introduce yourself.")
+                        Suspense { user in
+                            try UserComponent(user: user)
+                        }
+                    }
+
+                    // throws component can be nested
                     Suspense { user in
-                        try UserComponent(user: user)
+                        try Layout {
+                            try UserComponent(user: user)
+                        }
+                    } fallback: {
+                        Text("Well....")
                     }
-                }
 
-                Suspense { user in
-                    try Layout {
-                        try UserComponent(user: user)
+                    // simple usage
+                    Suspense {
+                        try await AsyncComponent(id: "AAA")
                     }
-                } fallback: {
-                    Text("Well....")
-                }
 
-                Suspense { user in
-                    try TerribleErrorComponent(user: user)
-                }
-
-                ErrorBoundary {
                     Suspense { user in
-                        try ErrorComponent(user: user)
+                        try TerribleErrorComponent(user: user)
                     }
-                } fallback: { error, reset in
-                    Text("Error happened")
-                    Button("Reset") {
-                        reset()
+
+                    // Nested ErrorBoundary
+                    ErrorBoundary {
+                        Suspense { user in
+                            try ErrorComponent(user: user)
+                        }
+                    } fallback: { error, reset in
+                        Text("Error happened")
+                        Button("Reset") {
+                            reset()
+                        }
+                        .buttonStyle(.borderedProminent)
                     }
-                    .buttonStyle(.borderedProminent)
                 }
+            } fallback: { _, _ in
+                Text("Application Error Happened!!!")
             }
-        } fallback: { _, _ in
-            Text("Application Error Happened!!!")
         }
         .padding()
     }
