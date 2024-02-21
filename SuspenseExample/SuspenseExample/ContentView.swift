@@ -2,6 +2,8 @@ import Suspense
 import SwiftUI
 
 struct ContentView: View {
+    @State var error: Error?
+
     var body: some View {
         VStack {
             VStack {
@@ -17,6 +19,20 @@ struct ContentView: View {
                 }
             } fallback: {
                 Text("Well....")
+            }
+
+            ErrorBoundary(error: $error) {
+                Suspense { user in
+                    try ErrorComponent(user: user)
+                } onError: { error in
+                    self.error = error
+                }
+            } fallback: { error, reset in
+                Text("Error happened")
+                Button("Reset") {
+                    reset()
+                }
+                .buttonStyle(.borderedProminent)
             }
         }
         .padding()
