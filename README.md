@@ -11,6 +11,7 @@ Based on your code samples and the inspiration from React's Suspense, here's a s
 - **Suspense Handling:** Easily manage async tasks with the `Suspense` view wrapper.
 - **Fallback Support:** Provide a fallback view to display while waiting for async tasks to complete.
 - **Component Reusability:** Simplify your view hierarchy by encapsulating async logic within reusable components.
+- **Error Handling**: With the newly implemented `ErrorBoundary`, SwiftUI Suspense now provides a way to catch and handle errors gracefully within your views.
 
 ## Installation
 
@@ -62,23 +63,49 @@ struct ContentView: View {
 
 ### Advanced Usage
 
-Combine multiple async components using `ComponentB` for nested async operations, still with the simplicity and ease of use provided by `Suspense`.
+Use `UserComponent` to combine async operations in a nested manner, maintaining ease of use with `Suspense`.
+Handle errors with `ErrorBoundary`, which allows displaying error messages and supports specifying the scope of error handling from `individual components` to the `entire page`.
+
 
 ```swift
 import Suspense
 import SwiftUI
 
 struct ContentView: View {
+    @State var error: Error?
+
     var body: some View {
         VStack {
-            Suspense { name in
-                try ComponentB {
-                    try ComponentA(name: name)
+            VStack {
+                Text("Please introduce yourself.")
+                Suspense { user in
+                    try UserComponent(user: user)
+                }
+            }
+
+            Suspense { user in
+                try Layout {
+                    try UserComponent(user: user)
                 }
             } fallback: {
-                Text("Please wait...")
+                Text("Well....")
+            }
+
+            ErrorBoundary(error: $error) {
+                Suspense { user in
+                    try ErrorComponent(user: user)
+                } onError: { error in
+                    self.error = error
+                }
+            } fallback: { error, reset in
+                Text("Error happened")
+                Button("Reset") {
+                    reset()
+                }
+                .buttonStyle(.borderedProminent)
             }
         }
+        .padding()
     }
 }
 ```
