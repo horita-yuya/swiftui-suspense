@@ -5,7 +5,14 @@ public typealias Reset = () -> Void
 public struct ErrorBoundary<PAGE: View, FALLBACK: View>: View {
     var errorHandler: ErrorHandler = .init()
     var children: () -> PAGE
-    var fallback: (Error, @escaping Reset) -> FALLBACK
+    var fallback: ((Error, @escaping Reset) -> FALLBACK)?
+
+    public init(
+        @ViewBuilder children: @escaping () -> PAGE
+    ) where FALLBACK == Never {
+        self.children = children
+        self.fallback = nil
+    }
 
     public init(
         @ViewBuilder children: @escaping () -> PAGE,
@@ -17,8 +24,10 @@ public struct ErrorBoundary<PAGE: View, FALLBACK: View>: View {
 
     public var body: some View {
         if let error = errorHandler.error {
-            fallback(error) {
-                self.errorHandler.error = nil
+            if let fallback = fallback {
+                fallback(error) {
+                    errorHandler.error = nil
+                }
             }
         } else {
             children()

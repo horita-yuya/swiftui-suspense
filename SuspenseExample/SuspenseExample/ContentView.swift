@@ -33,6 +33,20 @@ struct ContentView: View {
                         try TerribleErrorComponent(user: user)
                     }
 
+                    // ErrorBoundary doesn't affect children if no errors happen
+                    ErrorBoundary {
+                        Suspense {
+                            try await AsyncComponent(id: "BBB")
+                        }
+                    }
+
+                    // Ignore Error
+                    ErrorBoundary {
+                        Suspense { user in
+                            try ErrorComponent(user: user)
+                        }
+                    }
+
                     // Nested ErrorBoundary
                     ErrorBoundary {
                         Suspense { user in
