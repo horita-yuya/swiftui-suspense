@@ -15,7 +15,7 @@ public struct Suspense<PAGE: View, A>: View {
     public init(
         @ViewBuilder component: @escaping () async throws -> PAGE,
         onError: ((Error) -> Void)? = nil
-    ) where A == Void {
+    ) where A == Never {
         self.component = .voidComponent(component)
         self.fallback = AnyView(ProgressView())
         self.onError = onError

@@ -18,7 +18,9 @@ let package = Package(
         ),
         .testTarget(
             name: "SuspenseTests",
-            dependencies: ["Suspense"]
+            dependencies: [
+                "Suspense"
+            ]
         ),
     ]
 )
