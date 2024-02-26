@@ -63,7 +63,7 @@ struct ContentView: View {
 }
 ```
 
-### Advanced Usage
+### [Advanced Usage](https://github.com/horita-yuya/swiftui-suspense/blob/main/docs/ADVANCED_USAGE.md)
 
 [here](https://github.com/horita-yuya/swiftui-suspense/blob/main/docs/ADVANCED_USAGE.md)
 
