@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		811B9C722B8C426500AB61AB /* ExampleWithState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811B9C712B8C426500AB61AB /* ExampleWithState.swift */; };
 		819EBA682B84FA57009BE1FE /* Suspense in Frameworks */ = {isa = PBXBuildFile; productRef = 819EBA672B84FA57009BE1FE /* Suspense */; };
 		819EBA6A2B84FE14009BE1FE /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819EBA692B84FE14009BE1FE /* SampleData.swift */; };
 		819EBA6C2B861278009BE1FE /* TraditionalComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819EBA6B2B861278009BE1FE /* TraditionalComponents.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		811B9C712B8C426500AB61AB /* ExampleWithState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleWithState.swift; sourceTree = "<group>"; };
 		819EBA692B84FE14009BE1FE /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		819EBA6B2B861278009BE1FE /* TraditionalComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraditionalComponents.swift; sourceTree = "<group>"; };
 		81EA69DB2B845C0F00E9DB79 /* SuspenseExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuspenseExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +66,7 @@
 				81EA69DE2B845C0F00E9DB79 /* App.swift */,
 				81EA69E02B845C0F00E9DB79 /* ContentView.swift */,
 				819EBA6B2B861278009BE1FE /* TraditionalComponents.swift */,
+				811B9C712B8C426500AB61AB /* ExampleWithState.swift */,
 				81EA69F02B845D4200E9DB79 /* SampleComponents.swift */,
 				819EBA692B84FE14009BE1FE /* SampleData.swift */,
 				81EA69E22B845C1000E9DB79 /* Assets.xcassets */,
@@ -163,6 +166,7 @@
 			files = (
 				819EBA6C2B861278009BE1FE /* TraditionalComponents.swift in Sources */,
 				81EA69E12B845C0F00E9DB79 /* ContentView.swift in Sources */,
+				811B9C722B8C426500AB61AB /* ExampleWithState.swift in Sources */,
 				81EA69F12B845D4200E9DB79 /* SampleComponents.swift in Sources */,
 				81EA69DF2B845C0F00E9DB79 /* App.swift in Sources */,
 				819EBA6A2B84FE14009BE1FE /* SampleData.swift in Sources */,
