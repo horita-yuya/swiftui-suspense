@@ -1,25 +1,27 @@
 import SwiftUI
 
 public struct Suspense<PAGE: View, A>: View {
-    fileprivate typealias ThrowableComponent = (A?) throws -> PAGE
-    fileprivate typealias AsyncComponent = () async throws -> PAGE
+    typealias ThrowableComponent = (A?) throws -> PAGE
+    typealias AsyncComponent = () async throws -> PAGE
 
-    private enum Component {
+    enum Component {
         case asyncComponent(AsyncComponent)
         case throwableComponent(ThrowableComponent)
     }
 
-    private enum Status {
+    enum Status {
         case pending
+        case failed
         case completedAsync(PAGE)
         case completedThrowable(A)
+        case completedThrowableWithNoParams(PAGE)
     }
 
-    @State private var status: Status = .pending
+    @State var status: Status = .pending
     @Environment(ErrorHandler.self) private var errorHandler: ErrorHandler?
-    private var component: Component
-    private var fallback: AnyView
-    private var onError: ((Error) -> Void)?
+    var component: Component
+    var fallback: AnyView
+    var onError: ((Error) -> Void)?
 
     public init(
         @ViewBuilder component: @escaping () async throws -> PAGE,
@@ -64,50 +66,66 @@ public struct Suspense<PAGE: View, A>: View {
         case .pending:
             fallback
                 .task {
-                    do {
-                        switch component {
-                        case .asyncComponent(let component):
-                            status = .completedAsync(try await component())
-
-                        case .throwableComponent(let component):
-                            do {
-                                _ = try component(nil)
-                            } catch Promise<A>.pending(let query) {
-                                do {
-                                    let data = try await query()
-                                    status = .completedThrowable(data)
-
-                                } catch {
-                                    onError?(error)
-                                    errorHandler?.error = error
-                                }
-                            }
-                        }
-                    } catch {
-                        onError?(error)
-                        errorHandler?.error = error
-                    }
+                    self.status = await resolveComponent()
                 }
+
+        // Suspense does not specially handle the failed status.
+        // Errors that occur are propagated outward, so they should be handled using something like an ErrorBoundary.
+        case .failed:
+            fallback
+
         case .completedAsync(let page):
             page
 
         case .completedThrowable(let data):
             switch component {
             case .asyncComponent:
-                EmptyView()
-                    .onAppear {
-                        assertionFailure("AsyncComponent must not be completed as throwable")
-                    }
+                fatalError("AsyncComponent must no be resolved as throwable")
 
             case .throwableComponent(let component):
                 resolveThrowableComponent(component: component, data: data)
             }
+
+        case .completedThrowableWithNoParams(let page):
+            page
         }
     }
 
-    private func resolveThrowableComponent(component: ThrowableComponent, data: A) -> AnyView {
+    @inline(__always)
+    func resolveComponent() async -> Status {
+        do {
+            switch component {
+            case .asyncComponent(let component):
+                return .completedAsync(try await component())
+
+            case .throwableComponent(let component):
+                do {
+                    return .completedThrowableWithNoParams(try component(nil))
+                } catch Promise<A>.pending(let query) {
+                    do {
+                        let data = try await query()
+                        return .completedThrowable(data)
+
+                    } catch {
+                        onError?(error)
+                        errorHandler?.error = error
+                        return .failed
+                    }
+                }
+            }
+
+        } catch {
+            onError?(error)
+            errorHandler?.error = error
+            return .failed
+        }
+    }
+
+    @inline(__always)
+    func resolveThrowableComponent(component: ThrowableComponent, data: A) -> AnyView {
         do {
             return AnyView(try component(data))
+
         } catch {
             onError?(error)
             errorHandler?.error = error

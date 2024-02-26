@@ -12,6 +12,9 @@ let package = Package(
             targets: ["Suspense"]
         )
     ],
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-testing.git", branch: "main")
+    ],
     targets: [
         .target(
             name: "Suspense"
@@ -19,7 +22,8 @@ let package = Package(
         .testTarget(
             name: "SuspenseTests",
             dependencies: [
-                "Suspense"
+                "Suspense",
+                .product(name: "Testing", package: "swift-testing"),
             ]
         ),
     ]
