@@ -153,7 +153,7 @@ In this example, only `ThrowableCounter` is updated. This is a design limitation
 
 Components which have an async initializer are *treated like a snapshot*.
 
-## What if without Suspense?
+## What if without Suspense and ErrorBoundary?
 
 This approach requires a lot of boilerplate code.
 
