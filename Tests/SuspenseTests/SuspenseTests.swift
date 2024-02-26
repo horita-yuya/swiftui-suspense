@@ -44,7 +44,7 @@ struct SuspenseTests {
             EmptyView()
         }
     }
-    
+
     private struct AsyncUseComp: View {
         init() async throws {
             let value: String? = nil
@@ -52,7 +52,7 @@ struct SuspenseTests {
                 return ""
             }
         }
-        
+
         var body: some View {
             EmptyView()
         }
@@ -115,7 +115,7 @@ struct SuspenseTests {
 
         let status2 = await async2.resolveComponent()
         #expect(status2.desc == "failed")
-        
+
         // This is an intended behavior.
         // Async Component has limited features, becasue it doesn't supported to be updated by state.
         // If we want to use `use` function, non-async throwable component is enough. We can call async function inside `use` function.
@@ -124,8 +124,8 @@ struct SuspenseTests {
         } onError: { error in
             #expect(error is Promise<String>)
         }
-        
-        // 
+
+        //
         let status3 = await async3.resolveComponent()
         #expect(status3.desc == "failed")
     }

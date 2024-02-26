@@ -29,6 +29,8 @@ dependencies: [
 
 Wrap your view components that require asynchronous data fetching with `Suspense`, and provide a fallback view to display while the data is loading.
 
+To resolve passed optional argument, use `use` function defined in Suspense module.
+
 ```swift
 import Suspense
 import SwiftUI
