@@ -36,6 +36,10 @@ struct ExampleWithState: View {
             Text("Internal error happened")
         }
 
+        Suspense {
+            try ExampleWithInternalError(value: $0)
+        }
+
         SimpleCounter(count: count)
 
         Button {

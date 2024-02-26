@@ -3,7 +3,7 @@ import SwiftUI
 public typealias Reset = () -> Void
 
 public struct ErrorBoundary<PAGE: View, FALLBACK: View>: View {
-    var errorHandler: ErrorHandler = .init()
+    @State var errorHandler: ErrorHandler = .init()
     var children: () -> PAGE
     var fallback: ((Error, @escaping Reset) -> FALLBACK)?
 
