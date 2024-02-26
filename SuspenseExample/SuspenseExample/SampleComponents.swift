@@ -5,7 +5,7 @@ struct UserComponent: View {
     var user: User
 
     init(user: User?) throws {
-        self.user = try resolveValue(user) {
+        self.user = try use(user) {
             try await getUser()
         }
     }
@@ -35,7 +35,7 @@ struct ErrorComponent: View {
     var user: User
 
     init(user: User?) throws {
-        self.user = try resolveValue(user) {
+        self.user = try use(user) {
             try await Task.sleep(nanoseconds: 4_000_000_000)
 
             throw UserError.notFound
@@ -55,7 +55,7 @@ struct TerribleErrorComponent: View {
     var user: User
 
     init(user: User?) throws {
-        self.user = try resolveValue(user) {
+        self.user = try use(user) {
             try await Task.sleep(nanoseconds: 6_000_000_000)
 
             throw UserError.notFound
