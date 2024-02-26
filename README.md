@@ -19,7 +19,7 @@ To add `swiftui-suspense` to your SwiftUI project, simply add the following depe
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/horita-yuya/swiftui-suspense.git", from: "2.0.0")
+    .package(url: "https://github.com/horita-yuya/swiftui-suspense.git", from: "2.8.0")
 ]
 ```
 
