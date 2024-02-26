@@ -1,6 +1,6 @@
 ## Advances Usage
 
-### ErrorBoundary
+### [ErrorBoundary](https://github.com/horita-yuya/swiftui-suspense/blob/main/SuspenseExample/SuspenseExample/Components/FailedToFetch.swift)
 
 You can use ErrorBoundary component or onError callback to handle errors other than internal Promise errors.
 
@@ -28,7 +28,7 @@ struct ErrorBoundaryPage: View {
 }
 ```
 
-### Fetch and State
+### [Fetch and State](https://github.com/horita-yuya/swiftui-suspense/blob/main/SuspenseExample/SuspenseExample/Components/UserList.swift)
 
 Use Suspense to fetch data and update the parent state.
 
@@ -53,7 +53,7 @@ struct FetchAndStatePage: View {
 }
 ```
 
-### AsyncComponent
+### [AsyncComponent](https://github.com/horita-yuya/swiftui-suspense/blob/main/SuspenseExample/SuspenseExample/Components/AsyncUserList.swift)
 
 You can use an async initializer for your components.
 
@@ -78,7 +78,7 @@ struct AsyncPage: View {
 
 ```
 
-### Throwable vs Async Component
+### [Throwable vs Async Component](https://github.com/horita-yuya/swiftui-suspense/blob/main/SuspenseExample/SuspenseExample/Components/Counter.swift)
 
 One of the biggest differences between non-async throwable components and async throwable components is their re-rendering behavior.
 
