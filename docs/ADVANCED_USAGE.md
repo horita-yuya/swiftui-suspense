@@ -57,7 +57,7 @@ struct FetchAndStatePage: View {
 
 You can use an async initializer for your components.
 
-```
+```swift
 struct AsyncPage: View {
     @State private var selectedUser: User?
     
@@ -86,7 +86,7 @@ I will show you an example using the following components.
 
 The tasks of both of them are fetching user data and display count of it.
 
-```
+```swift
 import SwiftUI
 import Suspense
 
@@ -123,7 +123,7 @@ struct AsyncCounter: View {
 
 I use them in a page which has `count` state passed to each component.
 
-```
+```swift
 struct ThrowableVsAsyncPage: View {
     @State var count: Int = 0
     
@@ -157,7 +157,7 @@ Components which have an async initializer are *treated like a snapshot*.
 
 This approach requires a lot of boilerplate code.
 
-```
+```swift
 struct TraditionalUserComponent: View {
     @State var user: User?
 
