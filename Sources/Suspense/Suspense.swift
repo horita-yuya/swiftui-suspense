@@ -69,7 +69,7 @@ public struct Suspense<PAGE: View, A>: View {
                     self.status = await resolveComponent()
                 }
 
-        // Suspense does not specially handle the failed status.
+        // Suspense itself does not specially handle the failed status.
         // Errors that occur are propagated outward, so they should be handled using something like an ErrorBoundary.
         case .failed:
             fallback
